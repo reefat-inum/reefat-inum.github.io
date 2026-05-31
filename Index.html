@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reefat Inum | ECE Researcher & Educator</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f2044;
+    --navy-mid: #1a3060;
+    --gold: #c8963e;
+    --gold-light: #e8b96a;
+    --cream: #f7f4ee;
+    --warm-white: #fdfbf7;
+    --text: #1c1c1e;
+    --text-mid: #3a3a3c;
+    --text-light: #6e6e73;
+    --rule: #d4c9b0;
+    --card-bg: #ffffff;
+    --accent-bg: #eef2f9;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--text);
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(15,32,68,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,150,62,0.25);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 4rem;
+    height: 60px;
+  }
+  .nav-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--gold-light);
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 70% 50%, rgba(200,150,62,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(26,48,96,0.8) 0%, transparent 60%);
+  }
+
+  .hero-grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(200,150,62,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,150,62,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 4rem 4rem 6rem;
+    position: relative; z-index: 2;
+  }
+
+  .hero-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.2s;
+  }
+
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.4s;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-title {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.6s;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.75);
+    max-width: 460px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.8s;
+  }
+
+  .hero-stats {
+    display: flex; gap: 3rem;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 1s;
+  }
+
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem;
+    color: var(--gold-light);
+    display: block;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 0.3rem;
+  }
+
+  .hero-btns {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 1.1s;
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.85);
+    background: transparent;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold-light); transform: translateY(-2px); }
+
+  .hero-right {
+    display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 2;
+    padding: 8rem 6rem 4rem 4rem;
+  }
+
+  .hero-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(200,150,62,0.2);
+    border-radius: 8px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 380px;
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1.2s;
+  }
+
+  .hero-card-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(200,150,62,0.2);
+  }
+
+  .info-row {
+    display: flex; align-items: flex-start; gap: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .info-icon {
+    color: var(--gold);
+    font-size: 0.9rem;
+    margin-top: 0.15rem;
+    flex-shrink: 0;
+    width: 16px;
+  }
+
+  .info-text {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.5;
+  }
+
+  .info-text a {
+    color: var(--gold-light);
+    text-decoration: none;
+  }
+  .info-text a:hover { text-decoration: underline; }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 6rem; }
+
+  .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    color: var(--navy);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .section-rule {
+    width: 60px; height: 3px;
+    background: var(--gold);
+    margin-bottom: 3rem;
+  }
+
+  /* ── ABOUT ── */
+  .about-section { background: var(--warm-white); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    line-height: 1.85;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .highlight-card {
+    background: var(--navy);
+    border-radius: 6px;
+    padding: 1.5rem;
+    border-left: 3px solid var(--gold);
+  }
+
+  .highlight-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    color: var(--gold-light);
+    display: block;
+    line-height: 1;
+  }
+
+  .highlight-label {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.65);
+    margin-top: 0.3rem;
+  }
+
+  /* ── RESEARCH ── */
+  .research-section { background: var(--cream); }
+
+  .research-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .research-card {
+    background: var(--card-bg);
+    border-radius: 6px;
+    padding: 2rem;
+    border: 1px solid var(--rule);
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .research-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .research-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(15,32,68,0.12); }
+  .research-card:hover::before { transform: scaleX(1); }
+
+  .research-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .research-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .research-card p {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    line-height: 1.7;
+  }
+
+  .research-tag {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.2rem 0.6rem;
+    background: var(--accent-bg);
+    color: var(--navy-mid);
+    font-size: 0.72rem;
+    font-family: 'JetBrains Mono', monospace;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── TEACHING ── */
+  .teaching-section { background: var(--warm-white); }
+
+  .teaching-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .teaching-card {
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 1.75rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.25rem;
+    align-items: start;
+    transition: box-shadow 0.2s;
+  }
+
+  .teaching-card:hover { box-shadow: 0 6px 24px rgba(15,32,68,0.08); }
+
+  .teaching-dates {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--gold);
+    white-space: nowrap;
+    padding-top: 0.25rem;
+  }
+
+  .teaching-role {
+    font-weight: 600;
+    color: var(--navy);
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .teaching-org {
+    font-size: 0.825rem;
+    color: var(--text-light);
+    margin-bottom: 0.6rem;
+    font-style: italic;
+  }
+
+  .teaching-desc {
+    font-size: 0.825rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  /* ── PUBLICATIONS ── */
+  .publications-section { background: var(--cream); }
+
+  .pub-metrics {
+    display: flex; gap: 3rem;
+    margin-bottom: 3rem;
+    padding: 1.75rem 2rem;
+    background: var(--navy);
+    border-radius: 6px;
+    width: fit-content;
+  }
+
+  .pub-metric-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--gold-light);
+    display: block;
+    line-height: 1;
+  }
+
+  .pub-metric-label {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 0.25rem;
+  }
+
+  .pub-subsection-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem;
+    color: var(--navy);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--rule);
+  }
+
+  .pub-list {
+    list-style: none;
+    margin-bottom: 3rem;
+  }
+
+  .pub-item {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 1rem;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+  }
+
+  .pub-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--gold);
+    padding-top: 0.2rem;
+  }
+
+  .pub-text {
+    font-size: 0.875rem;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  .pub-text em { font-style: italic; color: var(--navy); }
+  .pub-text strong { color: var(--text); }
+
+  .pub-cite {
+    display: inline-block;
+    margin-left: 0.5rem;
+    padding: 0.1rem 0.45rem;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 0.68rem;
+    font-weight: 700;
+    border-radius: 2px;
+    font-family: 'JetBrains Mono', monospace;
+    vertical-align: middle;
+  }
+
+  /* ── AWARDS ── */
+  .awards-section { background: var(--navy); }
+  .awards-section .section-title { color: #fff; }
+  .awards-section .section-tag { color: var(--gold); }
+
+  .awards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+
+  .award-card {
+    border: 1px solid rgba(200,150,62,0.25);
+    border-radius: 6px;
+    padding: 1.75rem;
+    background: rgba(255,255,255,0.04);
+    transition: all 0.2s;
+  }
+
+  .award-card:hover {
+    background: rgba(200,150,62,0.08);
+    border-color: rgba(200,150,62,0.5);
+    transform: translateY(-3px);
+  }
+
+  .award-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .award-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .award-org {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* ── CONTACT ── */
+  .contact-section { background: var(--warm-white); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-text {
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.2s;
+    font-size: 0.9rem;
+  }
+
+  .contact-link:hover {
+    border-color: var(--gold);
+    color: var(--navy);
+    transform: translateX(4px);
+  }
+
+  .contact-link-icon {
+    font-size: 1.2rem;
+    width: 32px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .contact-link-label {
+    font-size: 0.72rem;
+    color: var(--text-light);
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.15rem;
+  }
+
+  .contact-link-val {
+    font-weight: 500;
+    color: var(--navy);
+    font-size: 0.875rem;
+  }
+
+  .skills-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .skill-tag {
+    padding: 0.35rem 0.85rem;
+    background: var(--accent-bg);
+    border: 1px solid rgba(15,32,68,0.12);
+    border-radius: 3px;
+    font-size: 0.78rem;
+    color: var(--navy-mid);
+    font-family: 'JetBrains Mono', monospace;
+    transition: all 0.15s;
+  }
+
+  .skill-tag:hover {
+    background: var(--navy);
+    color: var(--gold-light);
+    border-color: var(--navy);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.8rem;
+    border-top: 1px solid rgba(200,150,62,0.15);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 7rem 2rem 4rem; }
+    section { padding: 4rem 2rem; }
+    .about-grid, .contact-grid, .teaching-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .research-grid { grid-template-columns: 1fr; }
+    .awards-grid { grid-template-columns: 1fr 1fr; }
+    .hero-stats { gap: 2rem; flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-name">Reefat Inum</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#teaching">Teaching</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-left">
+    <span class="hero-tag">Ph.D. Candidate · UC Santa Cruz · ECE</span>
+    <h1 class="hero-name">Reefat<br><em>Inum</em></h1>
+    <p class="hero-title">Sensing · Nanophotonics · Electro-Optic Systems · Solid-State Nanopore</p>
+    <p class="hero-desc">I build sensing systems — optical, electrochemical, solid-state nanopore, and electrophysiological — from device design through full instrumentation stack. My research produces platforms that detect molecules at attomolar concentrations and image electrical signals across millions of sensing sites simultaneously. Alongside research, I teach circuits, control systems, and instrumentation with the conviction that students learn engineering best by doing it.</p>
+    <div class="hero-stats">
+      <div>
+        <span class="stat-num">518+</span>
+        <span class="stat-label">Citations</span>
+      </div>
+      <div>
+        <span class="stat-num">11</span>
+        <span class="stat-label">h-index</span>
+      </div>
+      <div>
+        <span class="stat-num">8+</span>
+        <span class="stat-label">Years Teaching</span>
+      </div>
+      <div>
+        <span class="stat-num">18</span>
+        <span class="stat-label">Publications</span>
+      </div>
+    </div>
+    <div class="hero-btns">
+      <a href="#research" class="btn btn-primary">Explore Research</a>
+      <a href="https://scholar.google.com/citations?user=V3woP9sAAAAJ" target="_blank" class="btn btn-outline">Google Scholar</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="hero-card-label">// Current Position</div>
+      <div class="info-row">
+        <span class="info-icon">🎓</span>
+        <span class="info-text">Ph.D. Candidate, Electrical &amp; Computer Engineering<br><strong style="color:rgba(255,255,255,0.9)">UC Santa Cruz</strong> · Expected 2026</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🏛️</span>
+        <span class="info-text">Assistant Professor (On Leave)<br><strong style="color:rgba(255,255,255,0.9)">RUET, Bangladesh</strong> · Dept. of EEE</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🔬</span>
+        <span class="info-text">Graduate Researcher<br><strong style="color:rgba(255,255,255,0.9)">Nanoengineering Group</strong> · Sensing &amp; Nanophotonics</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">📍</span>
+        <span class="info-text">Santa Cruz, California</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">✉️</span>
+        <span class="info-text"><a href="mailto:rinum@ucsc.edu">rinum@ucsc.edu</a>, <a href="mailto:reefat.inum@ieee.org">reefat.inum@ieee.org</a></span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">📞</span>
+        <span class="info-text">(831) 332-8910</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="section-tag">// 01 · About</div>
+  <h2 class="section-title">Researcher &amp; Educator</h2>
+  <div class="section-rule"></div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I am a Ph.D. candidate in Electrical and Computer Engineering at UC Santa Cruz, working in the Nanoengineering Group under Prof. Ahmet Ali Yanik. My doctoral research is organized around one central engineering challenge: designing transduction platforms that convert physical or chemical signals into measurable outputs with maximum sensitivity and minimum instrumentation complexity.</p>
+      <p>Over five years I have built plasmonic nanohole array optical sensors, electrochemical impedance biosensors, solid-state nanopore ionic current detectors, and opto-electrochemical electrophysiology systems — each grounded in hands-on system integration, device characterization, and data-driven analysis.</p>
+      <p>Before UCSC, I served as Lecturer and then Assistant Professor at Rajshahi University of Engineering &amp; Technology (RUET) in Bangladesh, where I taught circuits, power systems, control systems, embedded systems, and DSP to undergraduate engineers. I carry that teaching identity into every aspect of my research — every instrument I have built, every dataset I have analyzed has sharpened my ability to explain not just what the equation says, but why the measurement is hard.</p>
+      <p>I hold an IEEE membership and UCSC's Equity-Minded Mentoring Certificate, and have co-authored peer-reviewed publications with undergraduate student researchers through UCSC's Science Internship Program.</p>
+    </div>
+    <div class="about-highlights">
+      <div class="highlight-card">
+        <span class="highlight-num">100 aM</span>
+        <div class="highlight-label">Limit of detection — Plasmonic NHA sensor</div>
+      </div>
+      <div class="highlight-card">
+        <span class="highlight-num">9-Log</span>
+        <div class="highlight-label">Dynamic range — SiMoLiSA electrochemical platform</div>
+      </div>
+      <div class="highlight-card">
+        <span class="highlight-num">5×</span>
+        <div class="highlight-label">Sensitivity vs. nanoantenna probes — voltage imaging</div>
+      </div>
+      <div class="highlight-card">
+        <span class="highlight-num">30 dB</span>
+        <div class="highlight-label">SNR — Giant solid-state nanopore sensor</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section class="research-section" id="research">
+  <div class="section-tag">// 02 · Research</div>
+  <h2 class="section-title">Research Thrusts</h2>
+  <div class="section-rule"></div>
+  <div class="research-grid">
+    <div class="research-card">
+      <span class="research-icon">🔭</span>
+      <h3>Plasmonic Nanohole Array Optical Sensors</h3>
+      <p>Designed and characterized Fano-resonant NHA optical sensors achieving 100 aM LOD via extraordinary optical transmission spectral transduction. Built complete free-space optical test apparatus from the ground up integrating spectrometers, broadband illumination, and photodetectors.</p>
+      <span class="research-tag">Nanophotonics · EOT · FDTD</span>
+    </div>
+    <div class="research-card">
+      <span class="research-icon">🧪</span>
+      <h3>Electrochemical Sensing Platforms</h3>
+      <p>Engineered a full electrochemical sensing platform using EIS, CV, SWV, and electrophoretic deposition achieving 4.56 aM LOD with 9-log dynamic range. Built Randle's equivalent circuit models and COMSOL FEM simulations to optimize device performance.</p>
+      <span class="research-tag">EIS · CV · COMSOL FEM</span>
+    </div>
+    <div class="research-card">
+      <span class="research-icon">🕳️</span>
+      <h3>Solid-State Nanopore Ionic Current Sensors</h3>
+      <p>Designed and characterized a 700 nm solid-state nanopore achieving 103 aM LOD with 30 dB SNR. Developed MATLAB event detection algorithm for translocation analysis validated across a 6-log calibration range with 100% sensitivity and specificity.</p>
+      <span class="research-tag">Nanopore · MATLAB · Single-molecule</span>
+    </div>
+    <div class="research-card">
+      <span class="research-icon">🧠</span>
+      <h3>ML-Free Voltage Imaging Pipeline</h3>
+      <p>Developed a super-generalized voltage imaging pipeline using OpenCV, ImageJ, and MATLAB with PCA and ICA decomposition. Validated across four biological model systems without dataset-specific tuning — achieving 5× sensitivity improvement over nanoantenna probes.</p>
+      <span class="research-tag">PCA · ICA · Wide-field imaging</span>
+    </div>
+    <div class="research-card">
+      <span class="research-icon">🤖</span>
+      <h3>Deep Learning for Nanophotonic Design</h3>
+      <p>Applied deep learning for forward and inverse design of nanophotonic nanohole arrays, streamlining design for tailored optical functionalities and broadening accessibility of NHA engineering. Published in <em>Nanoscale</em>, 2024.</p>
+      <span class="research-tag">Deep Learning · Inverse Design · NHA</span>
+    </div>
+  </div>
+</section>
+
+<!-- TEACHING -->
+<section class="teaching-section" id="teaching">
+  <div class="section-tag">// 03 · Teaching</div>
+  <h2 class="section-title">Teaching Experience</h2>
+  <div class="section-rule"></div>
+  <div class="teaching-grid">
+    <div class="teaching-card">
+      <div class="teaching-dates">2024–2026</div>
+      <div>
+        <div class="teaching-role">Faculty Instructor — Optics &amp; Photonics</div>
+        <div class="teaching-org">COSMOS Program, UC Santa Cruz</div>
+        <div class="teaching-desc">Designed and delivered 4-week lab-intensive curriculum for advanced high school students from diverse California backgrounds. Supervised Lumerical FDTD, OSLO ray optics, and optical sensor design projects.</div>
+      </div>
+    </div>
+    <div class="teaching-card">
+      <div class="teaching-dates">2022–2024</div>
+      <div>
+        <div class="teaching-role">Research Mentor</div>
+        <div class="teaching-org">UCSC Science Internship Program</div>
+        <div class="teaching-desc">Mentored international high school students in 8-week original research programs. Co-authored peer-reviewed publication with 2024 cohort on plasmonic biosensors and nanopore sensors.</div>
+      </div>
+    </div>
+    <div class="teaching-card">
+      <div class="teaching-dates">2018–present</div>
+      <div>
+        <div class="teaching-role">Assistant Professor (On Leave)</div>
+        <div class="teaching-org">Dept. of EEE, RUET, Bangladesh</div>
+        <div class="teaching-desc">Lead instructor for Power Systems, Control Systems, DSP, Embedded Systems, and Circuit Theory. Supervised 10 undergraduate thesis students and guided IEEE conference publications.</div>
+      </div>
+    </div>
+    <div class="teaching-card">
+      <div class="teaching-dates">2022–2026</div>
+      <div>
+        <div class="teaching-role">Teaching Assistant</div>
+        <div class="teaching-org">UC Santa Cruz</div>
+        <div class="teaching-desc">Courses: Feedback Control Systems, Analog Electronics (ECE 171), EM Fields &amp; Waves (ECE 135), Engineering Principles of Electronics (ECE 30), Signals &amp; Systems (ECE 103), Statics (ECE 9).</div>
+      </div>
+    </div>
+    <div class="teaching-card">
+      <div class="teaching-dates">2015–2018</div>
+      <div>
+        <div class="teaching-role">Lecturer</div>
+        <div class="teaching-org">Dept. of EEE, RUET, Bangladesh</div>
+        <div class="teaching-desc">Taught Power Systems, Control Systems, Circuit Theory, and Electrical Machines. Developed laboratory experiments, course materials, and assessment rubrics for undergraduate engineering programs.</div>
+      </div>
+    </div>
+    <div class="teaching-card">
+      <div class="teaching-dates">Courses</div>
+      <div>
+        <div class="teaching-role">Qualified to Teach</div>
+        <div class="teaching-org">Graduate &amp; Undergraduate Level</div>
+        <div class="teaching-desc">Power Systems · Control Systems · Analog Electronics · Circuit Theory · Embedded Systems · DSP · EM Fields &amp; Waves · Signals &amp; Systems · Feedback Control · Instrumentation · Mechatronics</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section class="publications-section" id="publications">
+  <div class="section-tag">// 04 · Publications</div>
+  <h2 class="section-title">Selected Publications</h2>
+  <div class="section-rule"></div>
+
+  <div class="pub-metrics">
+    <div>
+      <span class="pub-metric-num">518+</span>
+      <div class="pub-metric-label">Total Citations</div>
+    </div>
+    <div>
+      <span class="pub-metric-num">11</span>
+      <div class="pub-metric-label">h-index</div>
+    </div>
+    <div>
+      <span class="pub-metric-num">13</span>
+      <div class="pub-metric-label">i10-index</div>
+    </div>
+    <div>
+      <span class="pub-metric-num">18</span>
+      <div class="pub-metric-label">Publications</div>
+    </div>
+  </div>
+
+  <div class="pub-subsection-title">Journal Articles</div>
+  <ul class="pub-list">
+    <li class="pub-item">
+      <span class="pub-num">J1</span>
+      <span class="pub-text">K. N. Shushama, M. M. Rana, <strong>R. Inum</strong>, and M. B. Hossain, "Graphene coated fiber optic surface plasmon resonance biosensor for the DNA hybridization detection: Simulation analysis," <em>Optics Communications</em>, vol. 383, pp. 186–190, 2017. <span class="pub-cite">118 citations</span></span>
+    </li>
+    <li class="pub-item">
+      <span class="pub-num">J2</span>
+      <span class="pub-text"><strong>R. Inum</strong>, M. M. Rana, K. N. Shushama, and M. A. Quader, "EBG based microstrip patch antenna for brain tumor detection via scattering parameters in microwave imaging system," <em>International Journal of Biomedical Imaging</em>, vol. 2018, Art. no. 8241438, 2018. <span class="pub-cite">117 citations</span></span>
+    </li>
+    <li class="pub-item">
+      <span class="pub-num">J3</span>
+      <span class="pub-text">K. N. Shushama, M. M. Rana, <strong>R. Inum</strong>, and M. B. Hossain, "Sensitivity enhancement of graphene coated surface plasmon resonance biosensor," <em>Optical and Quantum Electronics</em>, vol. 49, no. 11, p. 381, 2017. <span class="pub-cite">84 citations</span></span>
+    </li>
+    <li class="pub-item">
+      <span class="pub-num">J4</span>
+      <span class="pub-text">J. N. Nur et al., "Improvement of the performance parameters of the surface plasmon resonance biosensor using Al₂O₃ and WS₂," <em>Optical and Quantum Electronics</em>, vol. 51, no. 6, p. 174, 2019. <span class="pub-cite">39 citations</span></span>
+    </li>
+    <li class="pub-item">
+      <span class="pub-num">J5</span>
+      <span class="pub-text">T. Jahan, T. Dash, S. E. Arman, <strong>R. Inum</strong>, S. Islam, L. Jamal, A. A. Yanik, and A. Habib, "Deep learning-driven forward and inverse design of nanophotonic nanohole arrays," <em>Nanoscale</em>, vol. 16, no. 35, pp. 16641–16651, 2024. <span class="pub-cite">11 citations</span></span>
+    </li>
+    <li class="pub-item">
+      <span class="pub-num">J6</span>
+      <span class="pub-text">A. Tahmid et al., "Low-cost and easy-to-fabricate microwave sensor for sensitive glucose monitoring," <em>IEEE Journal of Electromagnetics, RF and Microwaves in Medicine and Biology</em>, 2024. <span class="pub-cite">12 citations</span></span>
+    </li>
+    <li class="pub-item">
+      <span class="pub-num">J7</span>
+      <span class="pub-text">S. Bhatt, N. Bose, K. N. Shushama, <strong>R. Inum</strong>, and K. B. M. R. Hasan, "Surface plasmon resonance biosensor with high sensitivity for detecting SARS-CoV-2," <em>Plasmonics</em>, vol. 20, no. 2, pp. 843–853, 2025. <span class="pub-cite">13 citations</span></span>
+    </li>
+    <li class="pub-item">
+      <span class="pub-num">J8</span>
+      <span class="pub-text"><strong>R. Inum</strong>, M. M. Rana, and K. N. Shushama, "Development of graphene based tapered slot antennas for ultra-wideband applications," <em>Progress in Electromagnetics Research C</em>, vol. 79, pp. 241–255, 2017. <span class="pub-cite">10 citations</span></span>
+    </li>
+  </ul>
+
+  <div class="pub-subsection-title">Conference Papers</div>
+  <ul class="pub-list">
+    <li class="pub-item">
+      <span class="pub-num">C1</span>
+      <span class="pub-text"><strong>R. Inum</strong>, M. M. Rana, and M. A. Quader, "Modeling of an efficient microstrip patch antenna for microwave brain imaging system," in <em>Proc. 3rd Int. Conf. Electrical Engineering and Information &amp; Communication Technology (iCEEiCT)</em>, Dhaka, Bangladesh, 2016. <span class="pub-cite">23 citations</span></span>
+    </li>
+    <li class="pub-item">
+      <span class="pub-num">C2</span>
+      <span class="pub-text">M. A. I. Aziz, M. M. Rana, M. A. Islam, and <strong>R. Inum</strong>, "Effective modeling of GBC based ultra-wideband patch antenna for brain tumor detection," in <em>Proc. Int. Conf. Computer, Communication, Chemical, Material and Electronic Engineering (IC4ME2)</em>, 2018. <span class="pub-cite">21 citations</span></span>
+    </li>
+    <li class="pub-item">
+      <span class="pub-num">C3</span>
+      <span class="pub-text"><strong>R. Inum</strong>, M. M. Rana, and K. N. Shushama, "Performance analysis of graphene based nano dipole antenna on stacked substrate," in <em>Proc. 2nd Int. Conf. Electrical, Computer and Communication Engineering (ECCE)</em>, 2016. <span class="pub-cite">15 citations</span></span>
+    </li>
+    <li class="pub-item">
+      <span class="pub-num">C4</span>
+      <span class="pub-text">M. H. Khatun, <strong>R. Inum</strong>, and N. Tasnim, "Design of rectangular patch antenna array using different feeding technique," in <em>Proc. 2nd Int. Conf. Electrical &amp; Electronic Engineering (ICEEE)</em>, 2017. <span class="pub-cite">14 citations</span></span>
+    </li>
+    <li class="pub-item">
+      <span class="pub-num">C5</span>
+      <span class="pub-text">N. Tasnim, <strong>R. Inum</strong>, H. Khatun, and M. A. G. Khan, "Comparative study on circular and elliptical microstrip patch arrays for X-band," in <em>Proc. Int. Conf. Robotics, Electrical and Signal Processing Techniques (ICREST)</em>, 2019. <span class="pub-cite">13 citations</span></span>
+    </li>
+    <li class="pub-item">
+      <span class="pub-num">C6</span>
+      <span class="pub-text">M. Asaduzzaman, <strong>R. Inum</strong>, M. S. Hossain, and M. A. G. Khan, "On the design of effective EBG structures to model highly efficient rectangular patch antenna," in <em>Proc. ICREST</em>, 2019. <span class="pub-cite">9 citations</span></span>
+    </li>
+    <li class="pub-item">
+      <span class="pub-num">C7</span>
+      <span class="pub-text">M. K. Islam, M. M. Rana, and <strong>R. Inum</strong>, "A comparative performance analysis of inverted F antenna using different substrates," in <em>Proc. Int. Conf. Electrical Engineering and Information &amp; Communication Technology (iCEEiCT)</em>, 2015. <span class="pub-cite">9 citations</span></span>
+    </li>
+    <li class="pub-item">
+      <span class="pub-num">C8</span>
+      <span class="pub-text">K. N. Shushama, M. M. Rana, and <strong>R. Inum</strong>, "Comparison of two types of graphene coated fiber optic SPR biosensors," in <em>Proc. 2nd Int. Conf. Electrical, Computer and Communication Engineering (ECCE)</em>, 2016. <span class="pub-cite">5 citations</span></span>
+    </li>
+  </ul>
+
+  <a href="https://scholar.google.com/citations?user=V3woP9sAAAAJ" target="_blank" class="btn btn-primary" style="margin-top:1rem; display:inline-flex;">View All on Google Scholar →</a>
+</section>
+
+<!-- AWARDS -->
+<section class="awards-section" id="awards">
+  <div class="section-tag">// 05 · Recognition</div>
+  <h2 class="section-title">Honors &amp; Awards</h2>
+  <div class="section-rule"></div>
+  <div class="awards-grid">
+    <div class="award-card">
+      <div class="award-year">2023–2024</div>
+      <div class="award-name">Dissertation Year Fellowship</div>
+      <div class="award-org">University of California, Santa Cruz</div>
+    </div>
+    <div class="award-card">
+      <div class="award-year">2019–2020</div>
+      <div class="award-name">Regents Fellowship</div>
+      <div class="award-org">University of California, Santa Cruz</div>
+    </div>
+    <div class="award-card">
+      <div class="award-year">2019–2020</div>
+      <div class="award-name">Dean's Fellowship</div>
+      <div class="award-org">University of California, Santa Cruz</div>
+    </div>
+    <div class="award-card">
+      <div class="award-year">2014</div>
+      <div class="award-name">University Gold Medal</div>
+      <div class="award-org">Ranked 1st / 120 graduates · RUET, Bangladesh</div>
+    </div>
+    <div class="award-card">
+      <div class="award-year">2011</div>
+      <div class="award-name">Student of the Year</div>
+      <div class="award-org">RUET, Bangladesh</div>
+    </div>
+    <div class="award-card">
+      <div class="award-year">2025</div>
+      <div class="award-name">Equity-Minded Mentoring Certificate</div>
+      <div class="award-org">UCSC Teaching &amp; Learning Center</div>
+    </div>
+    <div class="award-card">
+      <div class="award-year">2026</div>
+      <div class="award-name">IEEE Member</div>
+      <div class="award-org">In good standing through December 2026</div>
+    </div>
+    <div class="award-card">
+      <div class="award-year">2024</div>
+      <div class="award-name">MathWorks Power Electronics Certificate</div>
+      <div class="award-org">AC-DC, DC-DC, DC-AC · MATLAB/Simulink/Simscape</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-tag">// 06 · Contact</div>
+  <h2 class="section-title">Get in Touch</h2>
+  <div class="section-rule"></div>
+  <div class="contact-grid">
+    <div>
+      <div class="contact-links">
+        <a href="mailto:rinum@ucsc.edu" class="contact-link">
+          <span class="contact-link-icon">✉️</span>
+          <div>
+            <span class="contact-link-label">Email (UCSC)</span>
+            <span class="contact-link-val">rinum@ucsc.edu</span>
+          </div>
+        </a>
+        <a href="mailto:reefat.inum@ieee.org" class="contact-link">
+          <span class="contact-link-icon">✉️</span>
+          <div>
+            <span class="contact-link-label">Email (IEEE)</span>
+            <span class="contact-link-val">reefat.inum@ieee.org</span>
+          </div>
+        </a>
+        <a href="tel:+18313328910" class="contact-link">
+          <span class="contact-link-icon">📞</span>
+          <div>
+            <span class="contact-link-label">Phone</span>
+            <span class="contact-link-val">(831) 332-8910</span>
+          </div>
+        </a>
+        <a href="https://scholar.google.com/citations?user=V3woP9sAAAAJ" target="_blank" class="contact-link">
+          <span class="contact-link-icon">🎓</span>
+          <div>
+            <span class="contact-link-label">Google Scholar</span>
+            <span class="contact-link-val">citations?user=V3woP9sAAAAJ</span>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/reefat-inum" target="_blank" class="contact-link">
+          <span class="contact-link-icon">💼</span>
+          <div>
+            <span class="contact-link-label">LinkedIn</span>
+            <span class="contact-link-val">linkedin.com/in/reefat-inum</span>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div>
+      <p style="font-size:0.85rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1.25rem;">Technical Expertise</p>
+      <div class="skills-cloud">
+        <span class="skill-tag">Plasmonic Sensors</span>
+        <span class="skill-tag">Electrochemical EIS</span>
+        <span class="skill-tag">Solid-State Nanopore</span>
+        <span class="skill-tag">LabVIEW</span>
+        <span class="skill-tag">NI-DAQ</span>
+        <span class="skill-tag">OpenCV</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">MATLAB</span>
+        <span class="skill-tag">Lumerical FDTD</span>
+        <span class="skill-tag">COMSOL FEM</span>
+        <span class="skill-tag">PCA / ICA</span>
+        <span class="skill-tag">Feedback Control</span>
+        <span class="skill-tag">Power Electronics</span>
+        <span class="skill-tag">DUV Lithography</span>
+        <span class="skill-tag">e-beam Evaporation</span>
+        <span class="skill-tag">SEM</span>
+        <span class="skill-tag">Machine Vision</span>
+        <span class="skill-tag">OSLO Ray Optics</span>
+        <span class="skill-tag">Simulink / Simscape</span>
+        <span class="skill-tag">Embedded Systems</span>
+        <span class="skill-tag">Signal Processing</span>
+        <span class="skill-tag">sCMOS Camera</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Reefat Inum · Ph.D. Candidate, ECE · University of California, Santa Cruz · rinum@ucsc.edu</p>
+</footer>
+
+</body>
+</html>
